@@ -4,6 +4,8 @@
 
 'use strict';
 
+const speechutils = require('alexa-speech-utils')();
+
 module.exports = {
   getAdSummary: function(data, adsPlayed) {
     let i;
@@ -27,19 +29,25 @@ module.exports = {
     }
   },
   getAdText: function(adsPlayed) {
-    let text = '';
-    let numAds = 0;
     let ad;
+    const adText = [];
 
     if (adsPlayed) {
       for (ad in adsPlayed) {
         if (ad) {
-          numAds += adsPlayed[ad];
+          // Remove .txt
+          let adName = ad.toLowerCase();
+          const i = adName.indexOf('.txt');
+
+          if (i > -1) {
+            adName = adName.substr(0, i);
+          }
+
+          adText.push('the ' + adName + ' ad played ' + adsPlayed[ad] + ' times');
         }
       }
-      text += ('and ' + numAds + ' ads played. ');
     }
 
-    return text;
+    return speechutils.and(adText);
   },
 };

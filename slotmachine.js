@@ -31,11 +31,10 @@ module.exports = {
         }
 
         text = 'There are ' + results.length + ' registered players on slot machine ';
-        text += ('with a total of ' + totalSpins + ' spins ');
-        text += utils.getAdText(newads);
+        text += ('with a total of ' + totalSpins + ' spins. ');
       }
 
-      callback(text);
+      callback(text, {results: results, adsPlayed: utils.getAdText(newads)});
     });
   },
 };

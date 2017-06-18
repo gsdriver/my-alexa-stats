@@ -6,26 +6,23 @@
 
 const AWS = require('aws-sdk');
 const Alexa = require('alexa-sdk');
-const blackjack = require('./blackjack');
-const roulette = require('./roulette');
-const slotmachine = require('./slotmachine');
+const Launch = require('./intents/Launch');
+const Ads = require('./intents/Ads');
 
 const APP_ID = 'amzn1.ask.skill.924abe38-caee-4ccd-9c6d-812cdff92f5c';
 
 // Handlers for our skill
 const handlers = {
   'NewSession': function() {
-    // I don't really respond to anything - just spit out stats
-    blackjack.getBlackjackText((blackjackText) => {
-      roulette.getRouletteText((rouletteText) => {
-        slotmachine.getSlotsText((slotmachineText) => {
-          this.emit(':tell', blackjackText + ' ' + rouletteText + ' ' + slotmachineText);
-        });
-      });
-    });
+    this.emit('LaunchRequest');
   },
+  'LaunchRequest': Launch.handleIntent,
+  'AdIntent': Ads.handleIntent,
   'AMAZON.HelpIntent': function() {
-    this.emit(':tell', 'Just say open');
+    this.emit(':ask', 'What can I help you with?', 'What can I help you with?');
+  },
+  'Unhandled': function() {
+    this.emit(':ask', 'Sorry, I didn\'t get that. What can I help you with?', 'What can I help you with?');
   },
 };
 

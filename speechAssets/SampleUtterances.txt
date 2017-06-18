@@ -1,1 +1,5 @@
 AMAZON.HelpIntent help me
+AdIntent read {SkillType} ads
+AdIntent {SkillType} ads
+AdIntent ads for {SkillType}
+AdIntent which ads played for {SkillType}

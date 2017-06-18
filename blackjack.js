@@ -13,13 +13,14 @@ module.exports = {
   // Generates the text for blackjack e-mail summary
   getBlackjackText: function(callback) {
     let text;
+    let totalRounds = 0;
+    const params = {};
 
     getEntriesFromDB((err, results, newads) => {
       if (err) {
         text = 'Error getting blackjack data. ';
         console.log(err);
       } else {
-        let totalRounds = 0;
         let i;
 
         for (i = 0; i < results.length; i++) {
@@ -27,11 +28,13 @@ module.exports = {
         }
 
         text = 'There are ' + results.length + ' registered blackjack players ';
-        text += ('with a total of ' + totalRounds + ' sessions ');
-        text += utils.getAdText(newads);
+        text += ('with a total of ' + totalRounds + ' sessions. ');
       }
 
-      callback(text);
+      params.players = results.length;
+      params.rounds = totalRounds;
+      params.adsPlayed = utils.getAdText(newads);
+      callback(text, params);
     });
   },
 };
@@ -72,6 +75,6 @@ function getEntriesFromDB(callback) {
   })(true, null).then(() => {
     callback(null, results, newads);
   }).catch((err) => {
-    callback(err, null), null;
+    callback(err, null, null);
   });
 }
