@@ -6,6 +6,7 @@ function BuildEvent(argv)
 {
   // Templates that can fill in the intent
   var ads = {'name': 'AdIntent', 'slots': {'SkillType': {'name': 'SkillType', 'value': ''}}};
+  var details = {'name': 'DetailsIntent', 'slots': {'SkillType': {'name': 'SkillType', 'value': ''}}};
   var help = {'name': 'AMAZON.HelpIntent', 'slots': {}};
 
   var lambda = {
@@ -72,6 +73,11 @@ function BuildEvent(argv)
     lambda.request.intent = ads;
     if (argv.length > 3) {
       ads.slots.SkillType.value = argv[3];
+    }
+  } else if (argv[2] == 'details') {
+    lambda.request.intent = details;
+    if (argv.length > 3) {
+      details.slots.SkillType.value = argv[3];
     }
   } else if (argv[2] == 'help') {
     lambda.request.intent = help;

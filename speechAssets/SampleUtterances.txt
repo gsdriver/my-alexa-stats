@@ -2,4 +2,13 @@ AMAZON.HelpIntent help me
 AdIntent read {SkillType} ads
 AdIntent {SkillType} ads
 AdIntent ads for {SkillType}
+AdIntent get ads for {SkillType}
 AdIntent which ads played for {SkillType}
+DetailsIntent read {SkillType} details
+DetailsIntent {SkillType} details
+DetailsIntent details for {SkillType}
+DetailsIntent details on {SkillType}
+DetailsIntent details about {SkillType}
+DetailsIntent get details on {SkillType}
+DetailsIntent get details for {SkillType}
+DetailsIntent get details about {SkillType}

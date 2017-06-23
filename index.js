@@ -8,6 +8,7 @@ const AWS = require('aws-sdk');
 const Alexa = require('alexa-sdk');
 const Launch = require('./intents/Launch');
 const Ads = require('./intents/Ads');
+const Details = require('./intents/Details');
 
 const APP_ID = 'amzn1.ask.skill.924abe38-caee-4ccd-9c6d-812cdff92f5c';
 
@@ -18,6 +19,7 @@ const handlers = {
   },
   'LaunchRequest': Launch.handleIntent,
   'AdIntent': Ads.handleIntent,
+  'DetailsIntent': Details.handleIntent,
   'AMAZON.HelpIntent': function() {
     this.emit(':ask', 'What can I help you with?', 'What can I help you with?');
   },

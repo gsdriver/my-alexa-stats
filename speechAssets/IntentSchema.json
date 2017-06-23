@@ -11,6 +11,15 @@
           "type": "LIST_OF_SKILLS"
         }
       ]
+    },
+    {
+      "intent": "DetailsIntent",
+      "slots": [
+        {
+          "name": "SkillType",
+          "type": "LIST_OF_SKILLS"
+        }
+      ]
     }
   ]
 }

@@ -109,7 +109,8 @@ module.exports = {
       text = 'There are ' + (american.players + european.players) + ' roulette players ';
       text += 'who have done ' + (american.spins + european.spins) + ' spins. ';
       text += tournament.players + ' are in the current tournament. ';
-      callback(text, {american: american, european: european, tournament: tournament, adsPlayed: utils.getAdText(adsPlayed)});
+      callback(text, {american: american, european: european,
+              tournament: tournament, adsPlayed: utils.getAdText(adsPlayed)});
     }).catch((err) => {
       text = 'Error getting Roulette results. ';
       console.log(err);

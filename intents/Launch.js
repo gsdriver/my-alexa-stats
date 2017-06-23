@@ -3,6 +3,7 @@
 //
 
 'use strict';
+
 const blackjack = require('../blackjack');
 const roulette = require('../roulette');
 const slotmachine = require('../slotmachine');

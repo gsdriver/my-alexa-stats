@@ -50,4 +50,21 @@ module.exports = {
 
     return speechutils.and(adText);
   },
+  getSkillType: function(slots) {
+    const skillMapping = {'blackjack': 'blackjack',
+      'roulette': 'roulette',
+      'slots': 'slots',
+      'slot machine': 'slots'};
+    let skill;
+
+    if (slots && slots.SkillType && slots.SkillType.value) {
+      const skillName = slots.SkillType.value.toLowerCase();
+
+      if (skillMapping[skillName]) {
+        skill = skillMapping[skillName];
+      }
+    }
+
+    return skill;
+  },
 };

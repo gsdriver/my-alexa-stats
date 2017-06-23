@@ -4,10 +4,12 @@
 
 'use strict';
 
+const utils = require('../utils');
+
 module.exports = {
   handleIntent: function() {
     // Let's see which one they want to read
-    const skill = getSkillType(this.event.request.intent.slots);
+    const skill = utils.getSkillType(this.event.request.intent.slots);
     let speech;
     const reprompt = 'What else can I help with?';
 
@@ -21,21 +23,4 @@ module.exports = {
   },
 };
 
-function getSkillType(slots) {
-  const skillMapping = {'blackjack': 'blackjack',
-    'roulette': 'roulette',
-    'slots': 'slots',
-    'slot machine': 'slots'};
-  let skill;
-
-  if (slots && slots.SkillType && slots.SkillType.value) {
-    const skillName = slots.SkillType.value.toLowerCase();
-
-    if (skillMapping[skillName]) {
-      skill = skillMapping[skillName];
-    }
-  }
-
-  return skill;
-}
 
